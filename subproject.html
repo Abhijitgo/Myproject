@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta charset="UTF-8" http-equiv="refresh" content="5">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="subproject.css" type="text/css">
+    <link rel="shortout icon" href="Gallery/sd4.jpg" type="image/x-icon"/>
+    <title>Number Game</title>
+    <script src="js/subproject.js" type="text/javascript" defer ></script>
+</head>
+<body>
+    <nav>
+        <a  style="padding: 20px 20px;" class="ar" href="index.html"><img src="Gallery/home.jpg" hight="30" width="35" alt="Home" title="Home" ></a>
+        <h1 >
+            Welcome To My( Sagar's ) Number Game Project 
+        </h1>
+    </nav>
+    <hr >
+
+    <div class="div"> 
+        <table class="tb">
+            <tr>
+                <td><a  href="main.html">Calculator</a></td>
+                <td><a class="na" style="color:orange; text-decoration: underline;" href="subproject.html">Number Game</a></td>
+            </tr>
+        </table>
+    </div>
+    <hr >
+
+    <main class="container">
+        <div class="card-body">
+            <table class="table1">
+                <tr>
+                    <td><label for="input">Input a Number</label></td>
+                    <td>
+                        <input type="number"  name="input" min="0" autofocus width="100" placeholder="Enter Number" id="inpt">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="btn btn-danger" id="reset" type="reset" value="Reset">
+                    </td>
+                </tr>
+            </table>
+            <!-- <input type="submit" name="submit" id="submit"> -->
+        </div>
+
+        
+        <div class="card-body"> 
+             <table>
+                <tr>
+                    <td>
+                        <table class="table2">
+                            <tr>
+                                <td>
+                                    <input class="btn btn-warning" type="submit" value="Binary" id="binary" >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input class="btn btn-warning" type="submit" value="Octal" id="Octal" >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input class="btn btn-warning" type="submit" value="HexaDecimal" id="hex" ></td>
+                            </tr>
+                            
+                        </table>
+                    </td>
+                    <td>
+                        <table class="table2">
+                            <tr>
+                                <td>
+                                    <input class="btn btn-warning" type="submit" value="Prime Test" id="prime">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input class="btn btn-warning" type="submit" value="Palindrome" id="palim" ></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input class="btn btn-warning" type="submit" value="Perfact Number" id="perfact" >
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            
+            <h3 style="color: white;" id="h3">Result <span  id="result"> </span> </h3>
+        </div>
+    </main>
+</body>
+</html>

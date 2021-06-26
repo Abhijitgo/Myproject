@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="fun()" class="btn btn-success">Click me</button>
+    <script>
+        let date = new Date();
+        let api = "f9ef9da947768caf1e7b201ef0360dd9bb917253";
+        let secretapi = "e2fab4aa9f7168c51181427330373eb46488f09a"; 
+        function fun(){
+            let time =Math.floor(date.getTime()/1000);
+            let rand = Math.floor(Math.random()*Math.pow(10,6));
+            console.log(time,rand);
+           
+            // $.get({
+            //     url: `https://codeforces.com/api/contest.hacks?contestId=618&apiKey=${api}&time=${time}&apiSig=${rand}sha512Hex(${rand}/contest.hacks?apiKey=${api}&contestId=618&time=${time}#${secretapi}`,
+            //     success: function(data){
+            //         console.log(data);
+            //     }
+                
+            // });
+
+            $.ajax({
+                type: "GET",
+                url: `https://codeforces.com/api/contest.hacks?contestId=678&apiKey=${api}&time=${time}&apiSig=${rand}sha512Hex(${rand}/contest.hacks?apiKey=${api}&contestId=678&time=${time}#${secretapi})`,
+                error: function(data){
+                    console.log(`https://codeforces.com/api/contest.hacks?contestId=618&apiKey=${api}&time=${time}&apiSig=${rand}sha512Hex(${rand}/contest.hacks?apiKey=${api}&contestId=618&time=${time}#${secretapi})`);
+                    console.log(data);
+                },
+                success: function(data){
+                    console.log(data);
+                }
+            })
+        }
+    </script>
+</body>
+</html>
+
+
+
+<?php
+    session_start();
+    if(!isset( $_SESSION['ExamId'])){
+
+        header("location: logout.php");
+    
+    }
+
+    $lasttime = $_SESSION['lasttime'];
+
+    $id = $_SESSION['ExamId'];
+    
+    $name = $_SESSION['ExamUsername'];
+
+    if( strpos($name, ' ') !=null )
+        $name = substr($name,0 , strpos($name,' '));
+
+    if(isset($_POST['formsave'])){
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        if($name != null || $email != null){
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                echo "<script>
+                alert('Email Id Format Not Correct');
+                window.history.go(-1); 
+                </script>";
+            }else{
+                include 'server.php';
+                $id= $_POST['id'];
+                // $sql3 = "SELECT * FROM usernamepass WHERE email_id NOT in (SELECT email_id from usernamepass WHERE  id = '$id')";
+                // $result3 = mysqli_query($conn, $sql3);
+                // if(mysqli_num_rows($result3) >0 ){
+                //     echo "<script>
+                //         alert('Sorry Already an Account Present With This Email-Id');
+                //         window.history.go(-1); 
+                //     </script>";
+                // }else{
+                    //echo $name .  $email;
+                $sql2 = "update sessionpracticle set name = '$name' , email_id = '$email' where id = '$id' ";
+                mysqli_query($conn,$sql2) or die("Sorry");
+                
+                echo "<script>
+                        window.history.go(-1); 
+                    </script>";
+            
+               
+            }
+        }else{
+            echo "<script>
+            alert('Fill Details');
+            window.history.go(-1); 
+            </script>";
+        }
+    }
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+      <meta http-equiv="refresh" content="1600;url=logout.php" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+     <link rel="stylesheet" href="profile.css">
+         <link rel="shortout icon" href="Gallery/sd4.jpg" type="image/x-icon"/>
+
+         <link rel="shortout icon" href="Gallery/sd4.jpg" type="image/x-icon"/>
+    <title><?php echo $name ?>'s Profile</title>
+    <style>
+        .icoedit i{
+            transition: all 0.8s;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="background">
+       <div class="back">
+           <a onclick="back()" alt="back" title="Back" style="cursor:pointer; color: #28df99; position:relative; left: 10px; top: 10px; " >
+               <i  class="fa fa-backward fa-2x" aria-hidden="true"></i>
+           </a>
+       </div>
+       <script>
+           function back(){
+               window.history.go(-1); 
+           }
+       </script>
+        <div class="card-body ">
+            <div class="container card col-md-7 col-xm-4">
+                <?php 
+                    include 'server.php';
+                    
+                    $sql = "select * from sessionpracticle Where id = '$id' "; 
+                    
+                    $result2 = mysqli_query($conn,$sql);
+                    
+                    $row = mysqli_fetch_assoc($result2);
+
+                ?>
+                <h2 id="formh2" style="text-align: center; color: red; "> Profile Info</h2>
+                <form  class="form" id="form" action="" method="POST">
+                    <input  type="text" name="id" value="<?php echo $row['id'] ?>" hidden>
+                    <p >Name :</p>
+                        <input id="edit" type="text" name="name" value="<?php echo $row['name'] ?>" required  >
+                    <p >Emali- Id :</p>
+                        <input class="forminput" type="email"  name="email" value="<?php echo $row['email_id'] ?>" readonly required >
+                    <p>Time Of Registration :</p>
+                        <input type="text" class="forminput" value="<?php echo $row['Regdate'] ?>" readonly>
+                    <p>Last Visiting Time :</p>
+                        <input  type="text" class="forminput" value="<?php echo $lasttime ?>" readonly>
+                    <input type="submit" name="formsave" value="Save" class="notvisible " id="save" >
+                </form>
+                
+                <div id="passbtn">
+                    <button onclick="passchange()">
+                        Password Change?
+                    </button>
+                    <div class="endform">
+                        <a class="icoedit" title="Edit" onclick="edit()">
+                            <i class="fas fa-edit fa-2x"></i>
+                        </a>
+                        <a class="icoedit" href="logout.php" title="Logout" >
+                            <i class="fa fa-power-off fa-2x" aria-hidden="true"></i>
+                        </a>
+                       
+                    </div>
+                </div>
+                    <?php   ?>
+                    <div id="password" class="notvisible">
+                            <h3 style="text-align: center; color: red; ">Change Password</h3>
+                        <form class="pass" action="passwordhome.php" method="post">
+                            <input type="text" name="id" value="<?php echo $row['id'] ?>" hidden>
+                            <p>Current Password :</p>
+                                <i onclick="showpassword1()" class="fa faeye fa-eye" aria-hidden="true"></i>
+                                <i id="showpass1" onclick="showpassword1()" class="notvisible fa faeye  fa-eye-slash" aria-hidden="true"></i>
+                                <input type="password" id="old" name="oldpass" placeholder="Enter Current Password" autofocus required>
+                            <p>New Password :</p>                   
+                                <i class="fa faeye fa-eye" onclick="showpassword2()" aria-hidden="true"></i>
+                                <i id="showpass2" onclick="showpassword2()" class="fa faeye notvisible fa-eye-slash" aria-hidden="true"></i>
+                                <input type="password" id="new" name="newpass" placeholder="Enter New Password" oninput="check()" required>
+                            <p>Re-Enter New Password :</p>
+                                <i class="fa faeye fa-eye" onclick="showpassword3()" aria-hidden="true"></i>
+                                <i id="showpass3" onclick="showpassword3()" class="fa faeye notvisible fa-eye-slash" aria-hidden="true"></i>
+                                <input type="password" id="renew" name="Reenterpass" placeholder="Retype New Password" required>
+                                <div id="output" class="output"></div>
+                                <input type="submit" class="notvisible"  id="submit" value="Change">
+                        </form>
+                        <div id="formback">
+                            <button onclick="passchange2()">
+                                Not Require
+                            </button>
+                        </div>
+                    </div>
+            </div>
+            <script>
+                const save = document.getElementById('save');
+                let input = document.getElementById('edit');
+                let form = document.getElementById('form');
+                let passwordbox = document.getElementById('password');
+               
+                const save = document.getElementById('save');
+                function edit(){
+                    save.classList.toggle('visible');
+                }
+                function passchange2(){
+                    window.location.reload();
+                    toggleform();
+                }
+                function passchange(){
+                    toggleform();
+                }
+                function toggleform(){
+                    document.getElementById('formh2').classList.toggle('notvisible');
+                    document.getElementById('passbtn').classList.toggle('notvisible');
+                    form.classList.toggle('notvisible');
+                    passwordbox.classList.toggle('visible');
+                }
+                function showpassword1(){
+                    example1();
+                    if(document.getElementById('showpass1').style.display === 'block'
+                    || document.getElementById('showpass1').style.display === ""
+                    ){
+                        document.getElementById('old').type = 'password';
+                        document.getElementById('showpass1').style.display = 'none';
+                    }else{
+                        document.getElementById('old').type = 'text';
+                        document.getElementById('showpass1').style.display = 'block';
+                    }
+                }
+                showpassword1();
+                function showpassword2(){
+                    example1()
+                    if(document.getElementById('showpass2').style.display === 'block'
+                    || document.getElementById('showpass2').style.display === ""
+                    ){
+                        document.getElementById('new').type = 'password';
+                        document.getElementById('showpass2').style.display = 'none';
+                    }else{
+                        document.getElementById('new').type = 'text';
+                        document.getElementById('showpass2').style.display = 'block';
+                    }
+                }
+                showpassword2();
+                function showpassword3(){
+                    example1()
+                    if(document.getElementById('showpass3').style.display === 'block'
+                    || document.getElementById('showpass3').style.display === ""
+                    ){
+                        document.getElementById('renew').type = 'password';
+                        document.getElementById('showpass3').style.display = 'none';
+                    }else{
+                        document.getElementById('renew').type = 'text';
+                        document.getElementById('showpass3').style.display = 'block';
+                    }
+                }
+                showpassword3();
+
+                document.getElementById('renew').addEventListener('input',check);
+                let newpassvalue = document.getElementById('new').value;
+                function check(){
+                    newpassvalue = document.getElementById('new').value;
+                    if( newpassvalue!=="" && document.getElementById('renew').value !=="" && newpassvalue!==document.getElementById('renew').value ){
+                        document.getElementById('output').textContent= "Passwords Does Not Match";
+                       // document.getElementById('output').classList.toggle('bg-success');
+                       document.getElementById('submit').className = 'notvisible';
+                        document.getElementById('output').className = 'output bg-danger';
+                    }else if(newpassvalue!=="" && document.getElementById('renew').value !=="" && newpassvalue === document.getElementById('renew').value ){
+                        //document.getElementById('output').classList.toggle('bg-danger');
+                        document.getElementById('submit').className = 'visible';
+                        document.getElementById('output').className = 'output bg-success';
+                        document.getElementById('output').textContent= " Passwords Matched, Now Click Change";
+                    }else{
+                        document.getElementById('submit').className = 'notvisible';
+                        document.getElementById('output').className = '';
+                        document.getElementById('output').textContent= "";
+                    }
+
+                }
+                
+                function example1() {
+                  // Vibrate for 30ms
+                  navigator.vibrate([30]);
+                }
+                
+            </script>
+        </div>
+
+    </div>
+
+</body>
+</html>

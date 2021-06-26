@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Css/Emi.css">
+    <meta charset="UTF-8" http-equiv="refresh" content="5000">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <script src="js/EMI.js" async></script>
+    <link rel="shortout icon" href="Gallery/sd4.jpg" type="image/x-icon"/>
+
+    <title>EMI Calculator</title>
+</head>
+<body>
+    <div class="loan">
+        <h3 id="h3">Loan Ammount</h3>
+        <div style="display: inline;float: right;">
+            <div id="AmountOutput"></div>
+            <!-- <a style="display: inline;" class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">lacs</a>
+            <div class="dropdown-menu" aria-labelledby="dropdownId">
+                <a class="dropdown-item" href="javascrpt:void(0)">thousand</a>
+                <a class="dropdown-item" href="javascrpt:void(0)">lacs</a>
+            </div> -->
+            <!-- <select name="" class="" id="PrincipleAmount">
+                <option value="thousand">thousand</option>
+                <option value="lacs">lacs</option>
+            </select> -->
+            <div class="box">
+                <select id="PrincipleAmount">
+                    <option value="lacs">lacs</option>
+                    <option value="thousand">thousand</option>
+                </select>
+              </div>
+        </div>
+        <br>
+        <input type="range" id="loanValue" class="slider" value="50" min="0" max="100">
+        <div >
+            <span style="float: left;font-size: large;font-weight: 600;">1</span>
+            <span id="spanPrinciple" style="display: block;font-size: large;font-weight: 600;" align="right">100L</span>
+        </div>
+
+    </div>
+    <br>
+
+    <div class="loan">
+        <h3 id="h3">Tenture(time)</h3>
+        <div style="display: inline;float: right;">
+        <div id="tentureOutput" ></div>
+        <!-- <a  style="display: inline;" class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">years</a>
+            <div class="dropdown-menu" aria-labelledby="dropdownId">
+                <a class="dropdown-item" href="javascrpt:void(0)">months</a>
+                <a class="dropdown-item" href="javascrpt:void(0)">years</a>
+            </div> -->
+            <div class="box">
+                <select id="timechoose">
+                    <option value="years">years</option>
+                    <option value="months">months</option>
+                </select>
+              </div>
+        </div>
+        <br>
+        <input type="range" id="tentureValue" class="slider" value="15" min="1" max="30">
+        <div >
+            <span style="float: left;font-size: large;font-weight: 600;">1</span>
+            <span id="spanYr" style="display: block;font-size: large;font-weight: 600;" align="right">30 Yr</span>
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="loan">
+        <h3 id="h3">Interest Rate</h3>
+        <div style="display: inline;float: right;">
+            <input id="rateOutput" min="0" max="30" >
+            <a  style="display: inline;" class="nav-link " href="#" >%</a>
+        </div>
+        <br>
+
+        <input type="range" id="rateValue" class="slider" value="15" min="0" max="30" step="0.1" >
+        <div >
+            <span style="float: left;font-size: large;font-weight: 600;">0</span>
+            <span style="display: block;font-size: large;font-weight: 600;" align="right">30%</span>
+        </div>
+
+    </div>
+
+    <div id="loanEmi">
+        <h4>Loan EMI</h4>
+        <div style="text-align: center;">
+            <span style="font-size: x-large;font-weight: 600;color: #fff;">
+                &#x20B9;
+            </span>
+            <span id="EMIloanOutput"></span>
+        </div>
+        <hr size="5" width="100%" border="5" color="whitesmoke">
+        <div id="LoanDetails">
+            <div class="LoanDetails1">
+                <p>Principle Amount</p>
+                <p id="LoanBal"></p>
+
+            </div>
+            <div class="LoanDetails2">
+                <p>Total Payable Interest</p>
+                <p id="InterestValue"></p>
+            </div>
+            <div class="LoanDetails3">
+                <p>Total Payable</p>
+                <p id="AllTotal"></p>
+            </div>
+        </div>
+        
+        <hr size="5" width="100%" border="5" color="whitesmoke">
+        <br>
+        
+        <div id="piechart" style=" height:250px;"></div>
+        
+    </div>
+
+    <br>
+
+    <footer style="text-align: center;font-family: 'Courier New', Courier, monospace;">
+        <div>
+            <a href="font.html" style="color: black;font-weight: 600;font-size: large;">
+                <i class="fa fa-home fa-2x" aria-hidden="true"></i>
+                Home
+            </a>
+        </div>
+        <div style="text-align: center;background-color: black;color: white;">
+            <p class="text-center">&copy; Copyright 2020 -<strong>
+                All Rights Reserved.
+            </strong>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

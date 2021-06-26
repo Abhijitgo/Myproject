@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" >
+   <meta charset="UTF-8" http-equiv="refresh" content="500">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Calculator Project </title>
+    <link rel="stylesheet" type="text/css" href="Css/main.css" />
+    <!-- <link rel="shortout icon" href="Gallery/sd4.jpg" type="image/x-icon"/> -->
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+<div class="container">
+
+    <div id="body-up"></div>
+    <div id="body-up-side"></div>
+
+</div>
+    <nav style="z-index: 10;">
+        <ul>
+            <li>
+                <a href="font.html"><img src="Gallery/home.jpg" hight="30" width="35" alt="Home" title="Home" ></a>
+            </li>
+        </ul>
+        <h1 >
+            Welcome To My(Sagar's) Calculator Project 
+        </h1>
+    </nav>
+    <hr >
+
+    <div class="div"> 
+        <table class="tb">
+            <tr>
+                <td><a class="na" style="color:orange; text-decoration: underline;font-family: 'PT Serif', serif;" href="main.html">Calculator</a></td>
+                <td><a class="na" style="font-family: 'PT Serif', serif;" href="subproject.html">Number Game</a></td>
+            </tr>
+        </table>
+    </div>
+    <hr >
+    
+    <div class="mydiv">
+		<b class="heading">The Simple Calculator</b>	
+    </div>
+    
+    <div id="backdrop" class="block" ></div>
+    <div class="show" id="helptag">
+        <button type="button" id="close">
+            <img src="Gallery/close.png" alt="Close Button" title="Close">
+        </button>
+        <h3 style="text-decoration: underline;">Help Section</h3>
+        <p>Press Alt + ' + ' for Plus </p>
+        <p>Press Alt + ' - ' for Minus </p>
+        <p>Press Alt + ' * ' for Multiply </p>
+        <p>Press Alt + ' / ' for Divide </p>
+        <p>Press Alt + ' v ' for Equal </p>
+        <p>Press Alt + ' r ' for All Clear </p>
+        <p>Press Alt + ' c ' for Backspace </p>
+    </div>
+
+    
+	<div class="section" id="section" >
+            <strong><em> Enter Numbers: </em></strong>                
+            <input class="input" type="text" onkeypress='return restrictAlphabets(event)' id="inputExp" placeholder="Enter Your Value" autofocus size= "25" >
+            <!-- <button accesskey="r" contenteditable="d" id="reset">C</button> -->&nbsp;
+            <button accesskey="c" contenteditable="d" id="clear" class="btn btn-success"><i class="fa fa-backward" aria-hidden="true"></i></button>
+            <button accesskey="r"  id="reset" class="btn btn-success">AC</button>
+            <div id="error-msg" style="color: red;font-weight: 600;"></div>
+        <!-- <button name="sum" type="button"  id="add-sum">+</button>
+        <button name="subtrct" type="button" id="add-subtract">-</button>
+        <button name="multy" type="button" id="add-multiply">*</button>
+        <button name="divide" type="button" id="add-divide">/</button><br>
+        <button name="Log-equal" type="button" id="log-btn">Log(a)</button>
+        <button name="ln-equal" type="button" id="ln-btn">ln(a)</button>
+        <button name="result-equal" type="button" id="addTotal">=</button><br>
+
+        <button type="reset" id="reset" accesskey="r" contenteditable="d">Clear</button> -->
+        <div style="display: block;margin: 5px;text-align: left;" >
+            <input type="button" value="Help" style="text-align: left;position: relative;" onkeydown="return checkPhoneKey(event.key)" class="btn btn-warning" id="help-btn">
+            <i class="fa fa-minus fa-2x" id="minus" style="cursor: pointer;float: right;padding-top: 8px;" onclick="numberTableFlip()" aria-hidden="true"></i>
+        </div>
+        <script>
+            function checkPhoneKey(key) {
+              return (key >= '0' && key <= '9') || key == '+' || key == '(' || key == ')' || key == '-' ||
+                key == 'ArrowLeft' || key == 'ArrowRight' || key == 'Delete' || key == 'Backspace';
+            }
+            </script>
+        <div id="numbers">
+            <table style="text-align: center;margin-left:auto;margin-right:auto;">
+                <tbody>
+                    <tr>
+                        <td><button class="button" value="7" onclick="keypress('7')" >7</button></td>
+                        <td><button class="button" value="8" onclick="keypress('8')">8</button></td>
+                        <td><button class="button" value="9" onclick="keypress('9')">9</button></td>
+                        <td><button class="button" accesskey="/" id="add-divide">/</button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="button" value="4" onclick="keypress('4')">4</button></td>
+                        <td><button class="button" value="5" onclick="keypress('5')">5</button></td>
+                        <td><button class="button" value="6" onclick="keypress('6')">6</button></td>
+                        <td><button class="button" accesskey="*" id="add-multiply">*</button></td>
+                        
+                    </tr>
+                    <tr>
+                        <td><button class="button" value="1" onclick="keypress('1')" > 1</button></td>
+                        <td><button class="button" value="2"  onclick="keypress('2')" >2</button></td>
+                        <td><button class="button" value="3" onclick="keypress('3')">3</button></td>
+                        <td><button class="button" accesskey="-" id="add-subtract">-</button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="button" onclick="keypress('.')">.</button></td>
+                        <td><button class="button" onclick="keypress('0')">0</button></td>
+                        <td><button class="button" accesskey="v" id="equal">=</button></td>
+                        <td><button class="button" accesskey="+" id="add-sum">+</button></td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <br>
+        <!-- <h2 id="eqn-resut">0</h2> -->
+        <h2 > Result is : <span id="result">0</span></h2><br>
+	    </div>
+
+    
+<section class="edit">
+    Please Inform Me If Any Bug Found into My Project (What's App Number :- <a href="https://wa.me/917001139324">7001139324</a>)
+  <p><a href="mailto:sagardaa058@gmail.com" >Otherwise Mail Me Tap this</a></p>
+</section>
+<!--<label for="name">Name</label><br><br>
+<input type="name" name="">
+<button type="reset" accesskey="r" contenteditable="d" > Reset</button>-->
+<script>
+    let input = document.getElementById('input');
+    input.onblur
+</script>
+
+</body>
+
+</html>

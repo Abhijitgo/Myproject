@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta charset="UTF-8" http-equiv="refresh" content="5"> -->
+    <meta name="keywords" content="Sagar's Portfolio" >  
+    <meta name="author" content="Sagar Das" >
+    <meta name="description" content="My Portfolio WebSite" >
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> -->
+    <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="index.css" type="text/css">
+    <link rel="shortout icon" href="Gallery/sd4.jpg" type="image/x-icon"/>
+    <script  src="js/font.js" type="text/javascript" defer ></script>
+    <title>Sagar's Blog</title>
+</head>
+<body id="body">
+    <div class="loading">
+
+    </div>
+    <nav id="navbar"  class="navb">
+        <a href="#body"><img class="img" src="https://i.ibb.co/6sgCpyW/logo.jpg" alt="" width="60" height="50" ></a>
+        <a style="font-size: 1.8em;  margin-left: 1%; color: white;" >Sagar's Site</a>
+        <ul class="navul">
+            <li>
+                <div class="dropdown">
+                    <button id="dropdown" >Projects</button>
+                    <div id="dropcont" class="dropdown-content">
+                        <p onclick="study()" id="study" >Study Site</p>
+                        <p onclick="index()" id="index" >My Another Site</p>
+                        <script>
+                            function  study(){
+                                window.location.assign('login.php');
+                            }
+                            function index(){
+                                window.location.assign('index2.html');
+                                
+                            }
+                        </script>
+                    </div>
+                </div>
+            </li>
+            <li> <a href="#body">Home</a> </li>
+            <li><a href="#Contact">Contact</a> </li>
+            <li><a href="#About">About</a></li>
+        </ul>
+        
+    </nav>
+    
+    <section id="home">
+        
+          <div class="containt" id="animate">
+            <p id="p" style="right: 0;position: absolute;display: inline; color: #509b8c; font-weight: 600; font-size: large; right: 10px; display: inline;" >Time: <span id="datetime"></span></p>
+            <p id="p" style="top: 40px; right: 0;position: absolute;display: inline; color: #509b8c; font-weight: 600; font-size: large; right: 10px; display: inline;" >IP Address: <span id="ip"></span></p>
+            <script  >
+            $.getJSON("https://api.ipify.org?format=json", 
+                function(data) { 
+                    $("#ip").html(data.ip); 
+                });
+                        setTimeout(function(){
+                // window.location.reload(1);
+                    
+                }, 5000);
+                var dt = new Date();
+                document.getElementById("datetime").textContent = dt.toLocaleTimeString();
+            </script>
+            <audio  id="audio" loop>
+                <source src="Gallery/rain.mp3" type="audio/mp3">
+                <!-- Your browser does not support the audio element. -->
+              </audio>
+              <button id="modal" > <img src="Gallery/music.png" width="38" height="35" alt="Music Play" title="Play/Pause Audio"> </button>
+                <!-- <script>  $(document).ready(function(){     document.getElementById("modal").click();});    </script>  auto click -->
+            <div class="containt-item"></div>
+            <div class="containt-item"></div>
+            <div class="containt-item"></div>
+            <div class="containt-item"></div>
+        </div>
+    </section>
+        <a id="gotop" style="z-index: 99;" class="top" href="#body"><img style="opacity: 0;" height="40" width="43" src="https://i.ibb.co/7NfPbF2/top.png" alt="Go Top"></a>
+        <script>
+            // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+            window.onscroll = function() {scrollFunction()};
+            const gotopbtn = document.getElementById('gotop');
+
+            function scrollFunction() {
+              if (document.body.scrollTop > 390 || document.documentElement.scrollTop > 390) {
+                gotopbtn.firstElementChild.style.opacity=1;
+                audio.pause();
+                
+            } else {
+                gotopbtn.firstElementChild.style.opacity=0;
+                if(chcekaudioplayorplause === 'play'){
+                    audio.play();
+                }   
+              }
+            }
+            </script>
+    <section id="About">
+        <!-- <h1><hr style="display: inline-block;background-color: black; height: 2px; border-style: none; width: 20%;" > </h1> -->
+        <div style="text-align: center;margin-bottom: 10px; ">
+            <div style="display: inline;"> 
+                <hr style=" background-color: green; display: inline-block; height: 5px; border-style: none; width: 20%;" >
+            </div>
+                <h1 style="display: inline;text-transform: uppercase;font-size: 30px;">About Me</h1>
+            <div style="display: inline;">
+                <hr style="display: inline-block;background-color: green; height: 5px; border-style: none; width: 20%;" >
+            </div>
+            
+            <div style="font-size: 1.2em; ">
+                <h2>Allow Me To Introduce Myself</h2>
+            </div>
+        </div>
+        <div class="about" style="display: relative; width: 80%;margin-left: auto;margin-right: auto;">
+            <img src="Gallery/img.jpg"  alt="Me" class="float-img">
+            <p >My Name is Sagar Das, I am From Krishnanagar, Nadia, West Bengal.
+            I'm Completed my Secondary and Higher Secondary Education From Krishnanagar Debnath High School and Krishnagar A.V. High School,
+            And My Graduation will be completed in 2021 from Ramkrishna Mahato Government Engineering College( Purulia ).
+            </p>
+            <p>
+                I am passionate about Coding with Problem Solving, Web Development And Softwear Develpment this fields. 
+            </p>
+            <!-- <i class="fa fa-plus fa-3x" style="color: green;" aria-hidden="true"></i>
+            <i class="fa fa-arrow-down fa-2x" aria-hidden="true"></i>
+            <i class="fa fa-download " aria-hidden="true"></i>
+            <div class="about-skill"> -->
+        </div> 
+        <div class="cleanx">
+            <div class="center-about">
+            <div class="about-skill">
+                <h2 style="text-transform: uppercase;">Look What I Can Do</h2>
+                <ul class="about-ul">
+                    <li ><i class="fa fa-plus" style="color: green;" aria-hidden="true"></i>&nbsp;C/CPP</li>
+                    <li ><i class="fa fa-plus"  style="color: green;"  aria-hidden="true"></i>&nbsp;JAVA</li>
+                    <li><i class="fa fa-plus"  style="color: green;" aria-hidden="true"></i>&nbsp;Javascript</li>
+                    <li><i class="fa fa-plus" style="color: green;" aria-hidden="true"></i>Angular</li>
+                </ul>
+                <ul class="about-ul" style="display: inline-block;">
+                    <li><i class="fa fa-plus"  style="color: green;" aria-hidden="true"></i>&nbsp;HTML/CSS</li>
+                    <li><i class="fa fa-plus"  style="color: green;" aria-hidden="true"></i>&nbsp;Node JS</li>
+                    <li><i class="fa fa-plus"  style="color: green;" aria-hidden="true"></i>&nbsp;PHP</li>
+                    <li><i class="fa fa-plus"  style="color: green;" aria-hidden="true"></i>&nbsp;Web Design</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <section id="Contact">
+        <div></div>
+        <h1>This is About Contact</h1>
+        <div>
+            <div style="font-size: 20px;" >
+                <p> 
+                    Phone Number - 7001139324
+                </p>
+                <p>
+                    Alternate Phone Number - 9641356259
+                </p>
+                <p>
+                    Email - sagardaa058@gmail.com
+                </p>
+            </div>
+            <i class="fa-2x fa fa-check-circle" aria-hidden="true"></i>
+            <i class="fa-2x fa fa-exclamation-circle" aria-hidden="true"></i>
+        </div>
+    </section>
+    <section id="">
+
+    </section>
+    <div class="footer">
+        <div >
+            <div id = "leftbox"> 
+                <h2   class="footer-h2">Contact</h2> 
+                <p>
+                    <a style="padding: 10px;" href="tel:7001139324"><i class="fa fa-phone fa-3x" aria-hidden="true"></i> </a>
+                    &nbsp;<span>7001139324</span>
+                </p>
+                <p >
+                    <a  style=" padding: 10px; " href="mailto:sagardaa058@gmail.com"><i class="fa fa-envelope fa-3x" aria-hidden="true"></i></a>
+                    &nbsp;<span >sagardaa058@gmail.com</span>
+                <p>
+                
+            </div>  
+              
+            <div id = "middlebox"> 
+                <h2  style="color:#2bb196; font-size: 25px;"  class="footer-h2">Creation</h2> 
+                <h2  style="color: white;text-align: center;font-size: 20px;">It's All Part Created By Sagar</h2>
+            </div> 
+              
+            <div id = "rightbox" > 
+                <h2 class="footer-h2">Social Handle:</h2>
+                <p>
+                    <a  href="https://www.facebook.com/Sagar.Sonu.Das3"><i class="fa fa-facebook fa-3x " aria-hidden="true"></i> </a>
+                    &nbsp;<span>Facebook</span>
+                    </p>
+                <p>
+                    <a href="https://www.youtube.com/channel/UCEBQt5FkDOp5nF2ZKtgo08g"><i class="fa fa-youtube-play fa-3x" aria-hidden="true"></i></a>&nbsp;
+                    <span>Twitter</span>
+                </p>
+                <p>
+                    <a href="https://www.linkedin.com/in/sagar-das-b182661a7/"><i class="fa fa-linkedin fa-3x" aria-hidden="true"></i> </a>
+                    &nbsp;<span>Likedin</span>
+                </p>
+                <p>
+                    <a href=""><i class="fa fa-instagram fa-3x" aria-hidden="true"></i> </a>
+                    &nbsp;<span>Instagram</span>
+                </p>
+               
+            </div> 
+        </div>
+
+        <div style="text-align: center;font-size: 24px;font-weight: 600;background-color: #2bb196;padding: 15px 15px; ">
+            &copy; 2020 Copyright: <strong style="color: blue;" >All Rights Reserve</strong>
+        </div>
+    </div>
+ </body>
+</html>
